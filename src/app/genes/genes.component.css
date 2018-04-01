@@ -1,3 +1,8 @@
 .gene-card:hover {
     background-color: #e9ecef;
 }
+
+.gene-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

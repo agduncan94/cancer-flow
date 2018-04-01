@@ -1,39 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div *ngIf="!gene" class="lead text-center col-12">Loading Gene...</div>
+    <div class="col-12" *ngIf="gene">
       <div class="card gene-card">
         <div class="card-body">
-          <h1>{{gene.name}}</h1>
+          <h1>{{gene.name}} <small><a href="http://www.ncbi.nlm.nih.gov/gene/{{gene.entrez_id}}">Entrez {{gene.entrez_id}}</a></small></h1>
           <h4 class="text-muted">{{gene.aliases}}</h4>
           <p class="lead">{{gene.description}}</p>
-
-          <!-- Overview -->
-          Entrez ID: <a href="http://www.ncbi.nlm.nih.gov/gene/{{gene.entrez_id}}">{{gene.entrez_id}}</a>
-
+        </div>
+      </div>
+      <div class="card gene-card">
+        <div class="card-body">
+          <h2 class="card-title">CIViC</h2>
           <!-- Variants -->
-          <h6>Variants</h6>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let variant of gene.variants">
-              <strong>{{variant.name}}</strong>
-              Accepted: {{variant.evidence_items.accepted_count}}
-              Rejected: {{variant.evidence_items.rejected_count}}
-              Submitted: {{variant.evidence_items.submitted_count}}
-            </li>
-          </ul>
+          <h4>Variants</h4>
+          <a href="#" *ngFor="let variant of gene.variants" class="badge badge-secondary">
+            {{variant.name}}
+            <!-- {{variant.id}} -->
+            <!-- {{variant.evidence_items.accepted_count}}
+            {{variant.evidence_items.rejected_count}}
+            {{variant.evidence_items.submitted_count}} -->
+          </a>
 
           <!-- Sources -->
-          <h6>Sources</h6>
+          <h4>Sources</h4>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let source of gene.sources">
               <strong><a href="{{source.source_url}}">{{source.name}}</a></strong>
+              <span class="badge badge-pill badge-warning float-right">{{source.status}}</span>
+              <span *ngIf="source.open_access" class="badge badge-pill badge-success float-right">Open Access</span>
               {{source.citation}}
-              {{source.pubmed_id}}
               {{source.open_access}}
-              {{source.pmc_id}}
-              {{source.publication_date | json}}
-              {{source.full_journal_title}}
-              {{source.status}}
-              {{source.is_review}}
               {{source.clinical_trials}}
             </li>
           </ul>
