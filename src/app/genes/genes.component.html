@@ -1,3 +1,12 @@
-<p>
-  genes works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="card gene-card" *ngFor="let gene of genes.records">
+      <div class="card-body" (click)="goToGene(gene.id)">
+        <span class="badge badge-pill badge-warning float-right">{{gene.variants.length}} Variants</span>
+        <h5 class="card-title">{{gene.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{gene.aliases}}</h6>
+        <p>{{gene.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
