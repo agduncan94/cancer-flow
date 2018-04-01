@@ -9,16 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./genes.component.css']
 })
 export class GenesComponent implements OnInit {
-  genes = {}
+  genes = null;
+  baseGenes = "https://civicdb.org/api/genes";
 
   constructor(private geneService: GeneService, private router: Router) { }
 
   ngOnInit() {
-    this.getGenes();
+    this.getGenes(this.baseGenes);
   }
 
-  getGenes() {
-    this.geneService.getGenes()
+  getGenes(geneUrl) {
+    this.geneService.getGenes(geneUrl)
       .subscribe(genes => this.genes = genes);
   }
 

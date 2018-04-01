@@ -1,5 +1,44 @@
 <div class="container">
   <div class="row">
-    {{gene | json}}
+    <div class="col-12">
+      <div class="card gene-card">
+        <div class="card-body">
+          <h1>{{gene.name}}</h1>
+          <h4 class="text-muted">{{gene.aliases}}</h4>
+          <p class="lead">{{gene.description}}</p>
+
+          <!-- Overview -->
+          Entrez ID: <a href="http://www.ncbi.nlm.nih.gov/gene/{{gene.entrez_id}}">{{gene.entrez_id}}</a>
+
+          <!-- Variants -->
+          <h6>Variants</h6>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let variant of gene.variants">
+              <strong>{{variant.name}}</strong>
+              Accepted: {{variant.evidence_items.accepted_count}}
+              Rejected: {{variant.evidence_items.rejected_count}}
+              Submitted: {{variant.evidence_items.submitted_count}}
+            </li>
+          </ul>
+
+          <!-- Sources -->
+          <h6>Sources</h6>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let source of gene.sources">
+              <strong><a href="{{source.source_url}}">{{source.name}}</a></strong>
+              {{source.citation}}
+              {{source.pubmed_id}}
+              {{source.open_access}}
+              {{source.pmc_id}}
+              {{source.publication_date | json}}
+              {{source.full_journal_title}}
+              {{source.status}}
+              {{source.is_review}}
+              {{source.clinical_trials}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -9,8 +9,7 @@ export class GeneService {
 
   constructor(private http: HttpClient) { }
 
-  getGenes(): Observable<Object> {
-    let geneUrl = "https://civicdb.org/api/genes";
+  getGenes(geneUrl): Observable<Object> {
     return this.http.get<Object>(geneUrl)
   }
 

@@ -1,12 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="card gene-card" *ngFor="let gene of genes.records">
-      <div class="card-body" (click)="goToGene(gene.id)">
-        <span class="badge badge-pill badge-warning float-right">{{gene.variants.length}} Variants</span>
-        <h5 class="card-title">{{gene.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{gene.aliases}}</h6>
-        <p>{{gene.description}}</p>
+    <div *ngIf="!genes" class="lead text-center col-12">Loading Genes...</div>
+    <div *ngIf="genes" class="col-12">
+      <div class="card gene-card" *ngFor="let gene of genes.records">
+        <div class="card-body" (click)="goToGene(gene.id)">
+          <span class="badge badge-pill badge-warning float-right">{{gene.variants.length}} Variants</span>
+          <h5 class="card-title">{{gene.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{gene.aliases}}</h6>
+          <p>{{gene.description}}</p>
+        </div>
       </div>
     </div>
+
+  </div>
+
+  <div *ngIf="genes">
+    <nav aria-label="Gene pagination">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" (click)="getGenes(genes._meta.links.previous)">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="getGenes(genes._meta.links.next)">Next</a></li>
+      </ul>
+    </nav>
   </div>
 </div>

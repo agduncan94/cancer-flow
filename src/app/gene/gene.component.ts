@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./gene.component.css']
 })
 export class GeneComponent implements OnInit {
-  gene = {}
+  gene = null;
 
   constructor(private geneService: GeneService, private route: ActivatedRoute, private location: Location) { }
 
