@@ -9,6 +9,7 @@ import { GenesComponent } from './genes/genes.component';
 import { GeneService } from './gene.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneComponent } from './gene/gene.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { GeneComponent } from './gene/gene.component';
     HomepageComponent,
     NavbarComponent,
     GenesComponent,
-    GeneComponent
+    GeneComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
