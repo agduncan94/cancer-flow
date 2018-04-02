@@ -14,7 +14,7 @@ export class GeneService {
   }
 
   getGene(gene): Observable<Object> {
-    let geneUrl = "https://civicdb.org/api/genes/" + gene;
+    let geneUrl = "https://civicdb.org/api/genes/" + gene + "?identifier_type=entrez_id";
     return this.http.get<Object>(geneUrl)
   }
 

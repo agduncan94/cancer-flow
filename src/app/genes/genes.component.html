@@ -3,7 +3,7 @@
     <div *ngIf="!genes" class="lead text-center col-12">Loading Genes...</div>
     <div *ngIf="genes" class="col-12">
       <div class="card gene-card" *ngFor="let gene of genes.records">
-        <div class="card-body" (click)="goToGene(gene.id)">
+        <div class="card-body" (click)="goToGene(gene.entrez_id)">
           <span class="badge badge-pill badge-warning float-right">{{gene.variants.length}} Variants</span>
           <h5 class="card-title">{{gene.name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{gene.aliases}}</h6>

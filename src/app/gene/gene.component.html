@@ -9,17 +9,36 @@
           <p class="lead">{{gene.description}}</p>
         </div>
       </div>
+
+      <div class="card gene-card">
+        <div class="card-body">
+          <h2 class="card-title">Summary of mutations</h2>
+          <h6 class="card-subtitle mb-2 text-muted">Overview of variants from multiple sources</h6>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Variant</th>
+                <th scope="col">CIViC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let variant of gene.variants">
+                <td>{{variant.name}}</td>
+                <td>Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="card gene-card">
         <div class="card-body">
           <h2 class="card-title">CIViC</h2>
+          <h6 class="card-subtitle mb-2 text-muted">Data pulled from CIViC</h6>
           <!-- Variants -->
           <h4>Variants</h4>
-          <a href="#" *ngFor="let variant of gene.variants" class="badge badge-secondary">
+          <a href="/genes/{{gene.entrez_id}}/{{variant.id}}" *ngFor="let variant of gene.variants" class="badge" [ngClass]="getVariantClass(variant)">
             {{variant.name}}
-            <!-- {{variant.id}} -->
-            <!-- {{variant.evidence_items.accepted_count}}
-            {{variant.evidence_items.rejected_count}}
-            {{variant.evidence_items.submitted_count}} -->
           </a>
 
           <!-- Sources -->

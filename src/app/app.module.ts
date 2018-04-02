@@ -10,6 +10,8 @@ import { GeneService } from './gene.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneComponent } from './gene/gene.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { VariantService } from './variant.service';
+import { VariantComponent } from './variant/variant.component';
 
 
 @NgModule({
@@ -19,14 +21,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarComponent,
     GenesComponent,
     GeneComponent,
-    DashboardComponent
+    DashboardComponent,
+    VariantComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [GeneService],
+  providers: [GeneService, VariantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

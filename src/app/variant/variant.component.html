@@ -1,0 +1,6 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="!variant" class="lead text-center col-12">Loading Gene...</div>
+    {{variant | json}}
+  </div>
+</div>

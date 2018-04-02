@@ -23,4 +23,16 @@ export class GeneComponent implements OnInit {
       .subscribe(gene => this.gene = gene);
   }
 
+  getVariantClass(variantObject) {
+    if (variantObject.evidence_items.accepted_count > 0) {
+      return('badge-success');
+    } else if (variantObject.evidence_items.submitted_count > 0) {
+      return('badge-warning');
+    } else if (variantObject.evidence_items.rejected_count > 0) {
+      return('badge-danger');
+    } else {
+      return('badge-secondary');
+    }
+  }
+
 }
