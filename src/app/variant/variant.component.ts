@@ -18,7 +18,6 @@ export class VariantComponent implements OnInit {
   ngOnInit() {
     this.geneId = +this.route.snapshot.paramMap.get('id');
     this.variantId = +this.route.snapshot.paramMap.get('variant');
-    console.log("gene " + this.geneId + " variant " + this.variantId);
     this.getVariant(this.variantId);
   }
 

@@ -1,6 +1,68 @@
 <div class="container">
   <div class="row">
-    <div *ngIf="!variant" class="lead text-center col-12">Loading Gene...</div>
-    {{variant | json}}
+    <div *ngIf="!variant" class="lead text-center col-12">Loading Variant...</div>
+    <div class="col-12" *ngIf="variant">
+      <div class="card gene-card">
+        <div class="card-body">
+          <h1>{{variant.name}}</h1>
+          <h4 class="text-muted">{{variant.variant_aliases}}</h4>
+          <p class="lead">{{variant.description}}</p>
+        </div>
+      </div>
+      <div class="card gene-card">
+        <div class="card-body">
+          <h4>Coordinates</h4>
+          <div>
+            Chromosome: {{variant.coordinates.chromosome}}
+            Start: {{variant.coordinates.start}}
+            Stop: {{variant.coordinates.stop}} <br>
+            Reference Bases: {{variant.coordinates.reference_bases}}
+            Variant Bases: {{variant.coordinates.variant_bases}} <br>
+            {{variant.coordinates.reference_build}}
+            {{variant.coordinates.representative_transcript}}
+          </div>
+        </div>
+      </div>
+      <div class="card gene-card">
+        <div class="card-body">
+          <h4>Variant Types</h4>
+          <div *ngFor="let variant_type of variant.variant_types">
+            <strong><a href="{{variant_type.url}}" target="_blank">{{variant_type.display_name}}</a></strong><br>
+            {{variant_type.description}}
+          </div>
+        </div>
+      </div>
+      <div class="card gene-card" *ngFor="let evidence_item of variant.evidence_items">
+        <div class="card-body">
+          <h4>Evidence Item</h4>
+          <div>
+            <span class="badge badge-secondary">{{evidence_item.status}}</span>
+            <span class="badge badge-secondary">{{evidence_item.evidence_level}}</span>
+            <span class="badge badge-secondary">{{evidence_item.evidence_type}}</span>
+            <span class="badge badge-secondary">{{evidence_item.evidence_direction}}</span>
+            <span class="badge badge-secondary">{{evidence_item.clinical_significance}}</span>
+            <span class="badge badge-secondary">{{evidence_item.variant_origin}}</span>
+            <span class="badge badge-secondary">Rating: {{evidence_item.rating}}</span>
+
+            <p>{{evidence_item.description}}</p>
+            Disease: <a href="{{evidence_item.disease.url}}" target="_blank">{{evidence_item.disease.display_name}}</a><br>
+            Drugs:
+            <span *ngFor="let drug of evidence_item.drugs">
+              {{drug.name}}
+            </span>
+            <br>
+            <span class="badge badge-pill badge-warning float-right">{{evidence_item.source.status}}</span>
+            <span *ngIf="evidence_item.source.open_access" class="badge badge-pill badge-success float-right">Open Access</span>
+            {{evidence_item.source.citation}}
+          </div>
+        </div>
+      </div>
+      <div class="card gene-card">
+        <div class="card-body">
+          ClinVar
+          {{variant.clinvar_entries}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

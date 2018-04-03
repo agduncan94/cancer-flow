@@ -23,7 +23,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let variant of gene.variants">
-                <td>{{variant.name}}</td>
+                <td><a href="/genes/{{gene.entrez_id}}/{{variant.id}}">{{variant.name}}</a></td>
                 <td>Yes</td>
               </tr>
             </tbody>
